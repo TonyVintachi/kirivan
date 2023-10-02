@@ -17,6 +17,13 @@
                 </div>
             </form>
         </div>
+        <!--code will desplay a list of projects for a user-->
+        @forelse ($projects = Project::all())
+            <!--use blade to create html elements-->
+            "....","....","...."
+        @empty
+
+        @endforelse
     </div>
 </body>
 </html>

@@ -79,5 +79,7 @@ Route::controller(ProjectsController::class)->group(
     }
 );
 
+Route::get('/update/{project_id}',['as'=>'update']);
 
+Route::get('/delete/{project_id}',['as'=>'delete']);
 
