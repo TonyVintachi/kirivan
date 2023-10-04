@@ -1,4 +1,4 @@
-<?php
+<php>
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectsController;
@@ -18,21 +18,7 @@ use Illuminate\Support\Facades\DB;
 |
 */
 
-Route::get('/', function(){
-    return view('auth.login');
-});
 
-Route::controller(AuthController::class)->group(
-    function(){
-        Route::get('register', 'register')->name('register');
-        Route::post('register', 'registerUser')->name('registerUser');
-
-        Route::get('login', 'login')->name('login');
-        Route::post('login', 'loginUser')->name('loginUser');
-
-        Route::get('logout', 'logout')->name('logout');
-    }
-);
 
 Route::middleware('auth')->group(
     function (){
@@ -81,10 +67,11 @@ Route::controller(ProjectsController::class)->group(
 
 Route::get('/update/{project_id}',['as'=>'update']);
 
-Route::get('/delete/{project_id}',['as'=>'delete']);
-
 Route::get('/update/{project_id}');
 
 Route::get('/edit/{project_id}',[ProjectsController::class,'edit']);
 
-Route::get('/edit/{project_id}',[ProjectsController@edit])->name('edit.project');
+Route::get('/delete/{project_id}',['as'=>'delete']);
+
+
+</php>

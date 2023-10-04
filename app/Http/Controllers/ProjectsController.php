@@ -117,18 +117,34 @@ class ProjectsController extends Controller
         $project ->create($REQUEST);
 
         //return view('projects.index');
-        return redirect()->route('project.index');
+        return redirect()->route('project.index',['project_id']);
     }
 
 
 
-    //this displays details of the project and it will also handle deletion of the project
-    public function show($id){
+    //this  allows you to edit an existing project
+    public function edit(Request $request, $project_id){
 
-        if($id === null){
+        $project = Project::find($project_id);
+
+        //use blade templating to show project
+        $request ->name = $project->name;
+        $request ->description = $project->description;
+
+        //return redirect()->action('edit',['project'=>$project]);
+        return response()->json($project);
+
+    }
+
+    //this displays details of the project and it will also handle deletion of the project
+    public function show(Request $request,$project_id){
+
+        if($project_id === null){
             return redirect('projects');
         }
-        $project = Project::find($id);
+        $project = Project::find($request->$project_id);
+
+
     }
 
 
@@ -159,7 +175,15 @@ class ProjectsController extends Controller
             echo '<p>Oops!!! something went wrong</p>';
         };
 
+        //code to get the data from the form using the request
+        function updateProject(Request $request){
+
+            $name = $request->get('name');
+            $description = $request->get('description');
+        }
     }
+
+
 
 
     //the delete method
@@ -171,5 +195,8 @@ class ProjectsController extends Controller
         $project->delete();
 
     }
+
+
+
 
 }
